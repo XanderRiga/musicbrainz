@@ -18,9 +18,9 @@ module MusicBrainz
       url = build_url(resource, query)
       response = get_contents(url)
 
-      return nil if response[:status] != 200
+      return nil if response.status != 200
 
-      xml = Nokogiri::XML.parse(response[:body]).remove_namespaces!.xpath('/metadata')
+      xml = Nokogiri::XML.parse(response.body).remove_namespaces!.xpath('/metadata')
       data = binding_class_for(params[:binding]).parse(xml)
 
       if params[:create_model]
