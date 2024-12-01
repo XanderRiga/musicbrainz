@@ -19,12 +19,12 @@ module MusicBrainz
 
     class << self
       def find(id)
-        client.load(:release_group, { id: id, inc: [:url_rels] }, {
+        client.load(:release_group, { id: id, inc: [:url_rels, :artist_rels] }, {
           binding: :release_group,
           create_model: :release_group
         })
       end
-      
+
       def search(artist_name, title, type = nil)
 				if type
 					super({artist: artist_name, releasegroup: title, type: type})
@@ -32,7 +32,7 @@ module MusicBrainz
 					super({artist: artist_name, releasegroup: title})
 				end
       end
-      
+
       def find_by_artist_and_title(artist_name, title, type = nil )
         matches = search(artist_name, title, type)
         matches.nil? || matches.empty? ? nil : find(matches.first[:id])
