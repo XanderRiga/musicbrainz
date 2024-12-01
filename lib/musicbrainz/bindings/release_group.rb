@@ -9,7 +9,7 @@ module MusicBrainz
           title: (xml.xpath('./title').text rescue nil),
           desc: (xml.xpath('./disambiguation').text rescue nil),
           first_release_date: (xml.xpath('./first-release-date').text rescue nil)
-        }.merge(Relations.parse(xml))
+        }.merge(Relations.parse(xml)).merge(ArtistCredits.parse(xml))
       end
 
       extend self

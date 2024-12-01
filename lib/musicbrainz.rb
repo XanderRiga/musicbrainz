@@ -23,6 +23,7 @@ require "musicbrainz/models/track"
 require "musicbrainz/models/recording"
 
 require "musicbrainz/bindings/artist"
+require "musicbrainz/bindings/artist_credits"
 require "musicbrainz/bindings/artist_search"
 require "musicbrainz/bindings/artist_release_groups"
 require "musicbrainz/bindings/discid_releases"

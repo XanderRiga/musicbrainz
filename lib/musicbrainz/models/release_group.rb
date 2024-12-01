@@ -6,6 +6,7 @@ module MusicBrainz
     field :desc, String
     field :first_release_date, Date
     field :urls, Hash
+    field :artist_credits, Array
 
     alias_method :disambiguation, :desc
 
@@ -19,7 +20,7 @@ module MusicBrainz
 
     class << self
       def find(id)
-        client.load(:release_group, { id: id, inc: [:url_rels, :artist_rels] }, {
+        client.load(:release_group, { id: id, inc: [:url_rels, :artist_credits] }, {
           binding: :release_group,
           create_model: :release_group
         })
