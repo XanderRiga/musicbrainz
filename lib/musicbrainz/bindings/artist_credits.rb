@@ -3,7 +3,6 @@ module MusicBrainz
     module ArtistCredits
       def parse(xml)
         artist_credits = xml.xpath('./artist-credit/name-credit').map do |xml|
-          binding.pry
           artist = xml.xpath('./artist').first
 
           {
