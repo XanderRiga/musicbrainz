@@ -7,8 +7,8 @@ module MusicBrainz
 
           {
             id: artist.attribute("id").value,
-            type: artist.attribute("type").value,
-            type_id: artist.attribute("type-id").value,
+            type: (artist.attribute("type").value rescue nil),
+            type_id: (artist.attribute("type-id").value rescue nil),
             name: artist.xpath('./name').text,
           }
         end
