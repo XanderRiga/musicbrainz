@@ -10,6 +10,7 @@ module MusicBrainz
     field :asin, String
     field :barcode, String
     field :quality, String
+    field :urls, Hash
 
     def mediums
       @mediums ||= client.load(:release, { id: id, inc: [:recordings, :media], limit: 100 }, {
