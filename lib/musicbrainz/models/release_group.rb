@@ -11,7 +11,7 @@ module MusicBrainz
     alias_method :disambiguation, :desc
 
     def releases
-      @releases ||= client.load(:release, { release_group: id, inc: [:media, :release_groups], limit: 100 }, {
+      @releases ||= client.load(:release, { release_group: id, inc: [:media, :release_groups, :url_rels], limit: 100 }, {
         binding: :release_group_releases,
         create_models: :release,
         sort: :date

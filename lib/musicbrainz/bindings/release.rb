@@ -3,7 +3,7 @@ module MusicBrainz
     module Release
       def parse(xml)
         xml = xml.xpath('./release') unless xml.xpath('./release').empty?
-        
+
         hash = {
           id: (xml.attribute('id').value rescue nil),
           type: (xml.xpath('./release-group').attribute('type').value rescue nil),
@@ -13,8 +13,8 @@ module MusicBrainz
           date: (xml.xpath('./date').text rescue nil),
           asin: (xml.xpath('./asin').text rescue nil),
           barcode: (xml.xpath('./barcode').text rescue nil),
-          quality: (xml.xpath('./quality').text rescue nil)
-        }
+          quality: (xml.xpath('./quality').text rescue nil),
+        }.merge(Relations.parse(xml))
         
         formats = (xml.xpath('./medium-list/medium/format') rescue []).map(&:text)
         
